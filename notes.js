@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require('chalk')
 
 const getNotes = function(){
     return 'Your notes...'
@@ -9,7 +10,6 @@ const addNote = function (title, body) {
     const duplicateNotes = notes.filter(function(note){
         return note.title === title
     })
-    console.log(!duplicateNotes.Length)
     if (!duplicateNotes.Length){
         notes.push({
             title: title,
@@ -20,6 +20,36 @@ const addNote = function (title, body) {
     } else {
         console.log('Note title taken.')
     }
+}
+const removeNote = function (title){
+    const notes = loadNotes()
+    const notesToKeep = notes.filter(function(note){      // FILTER: iterate trough notes, and keep any when return is true
+        return note.title !== title
+    })
+    if (notes.length === notesToKeep.length){
+        console.log(chalk.red.inverse('Note not found!'))
+    } else {
+        console.log(chalk.bgGreen('Note', title, 'removed'))
+        saveNotes(notesToKeep)
+
+    }
+
+
+
+
+
+    // My _Working_ Solution:
+    // const duplicateNotes = notes.filter(function(note){
+    //     if (note.title === title){
+    //         notes.pop({
+    //             title: title,
+    //         })
+    //         saveNotes(notes)
+    //         console.log('Note', title,'deleted.')
+    //     }
+    //     return note.title === title
+    // })
+
 }
 
 const saveNotes = function(notes) {
@@ -39,5 +69,6 @@ const loadNotes = function() {
 
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote
 }
