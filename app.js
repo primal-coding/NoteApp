@@ -50,8 +50,9 @@ yargs.command({
     }
 })
 
+// parses the command line parameters and executes the appropriate command:
+yargs.parse()       // much REQUIRED for handling all commands
 
-yargs.parse()       // parses the command line parameters and executes the appropriate command
 // console.log(yargs.argv)      // parses the command line paramters as well as printing argv value
 
 
