@@ -22,7 +22,7 @@ yargs.command({
         }
     },
     handler: function(argv) {
-        console.log('Adding a new Note!... \nTitle: ' + argv.title, '\nContent: ', argv.body)
+        notes.addNote(argv.title, argv.body)
     }
 })
 // Create remove command
